@@ -1,0 +1,60 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class BasketballGame {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+        
+        int playerScore = 0;
+        int computerScore = 0;
+        
+        System.out.println("Welcome to the Basketball Game!");
+        System.out.println("You will take turns shooting hoops.");
+        System.out.println("Enter 'shoot' to take a shot.");
+        System.out.println("The player with the most points after 5 rounds wins.");
+        
+        for (int round = 1; round <= 5; round++) {
+            System.out.println("\nRound " + round);
+            
+            // Player's turn
+            System.out.println("Your turn to shoot. Enter 'shoot': ");
+            String playerInput = scanner.nextLine();
+            
+            if (playerInput.equals("shoot")) {
+                int playerResult = random.nextInt(2); // 0 for a miss, 1 for a score
+                if (playerResult == 1) {
+                    playerScore++;
+                    System.out.println("You made the shot!");
+                } else {
+                    System.out.println("You missed the shot.");
+                }
+            } else {
+                System.out.println("Invalid input. Enter 'shoot' to take a shot.");
+            }
+            
+            // Computer's turn
+            int computerResult = random.nextInt(2);
+            if (computerResult == 1) {
+                computerScore++;
+                System.out.println("Computer made the shot!");
+            } else {
+                System.out.println("Computer missed the shot.");
+            }
+            
+            // Display current score
+            System.out.println("Current Score: Player " + playerScore + " - " + computerScore + " Computer");
+        }
+        
+        // Determine the winner
+        if (playerScore > computerScore) {
+            System.out.println("\nCongratulations! You win!");
+        } else if (playerScore < computerScore) {
+            System.out.println("\nComputer wins. Better luck next time.");
+        } else {
+            System.out.println("\nIt's a tie game!");
+        }
+        
+        scanner.close();
+    }
+}
